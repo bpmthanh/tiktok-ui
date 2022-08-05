@@ -78,3 +78,24 @@
         color: var(--primary);
     }
 }
+
+.search, .search-result{
+    width: 361px;
+}
+
+.search-title{
+    padding: 5px 12px;
+    color: rgba(22, 24, 35, 0.5);
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 600;
+}
+
+// More button
+.more-btn{
+    font-size: 2rem;
+    margin-left: 28px;
+    background-color: transparent;
+    padding: 4px 8px;
+}
+
