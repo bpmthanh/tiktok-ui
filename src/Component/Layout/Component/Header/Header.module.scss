@@ -17,6 +17,7 @@
     align-items: center;
     justify-content: space-between;
     font-size: 1.6rem;
+    padding: 0 var(--default-layout-horizontal-space);
 }
 
 .search{
@@ -91,11 +92,35 @@
     font-weight: 600;
 }
 
+// Action
+.actions{
+    display: flex;
+    align-items: center;
+}
+
+.actions-btn{
+    background-color: transparent;
+    color: #161823;
+    font-size: 2.4rem;
+    margin-left: 24px;
+    cursor: pointer;
+}
+
+// User-Avatar
+.user-avatar{
+    width: 32px;
+    border-radius: 100%;
+    cursor: pointer;
+    object-fit: cover;
+    margin-left: 24px;
+}
+
 // More button
 .more-btn{
     font-size: 2rem;
     margin-left: 28px;
     background-color: transparent;
     padding: 4px 8px;
+    cursor: pointer;
 }
 

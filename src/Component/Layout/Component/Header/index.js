@@ -1,8 +1,28 @@
 import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSpinner, faCircleXmark, faMagnifyingGlass, faEllipsisVertical,faEarthEurope, faCircleQuestion, faKeyboard,faPlus } from '@fortawesome/free-solid-svg-icons';
+import {
+    faSpinner,
+    faCircleXmark,
+    faMagnifyingGlass,
+    faEllipsisVertical,
+    faEarthEurope,
+    faCircleQuestion,
+    faKeyboard,
+    faPlus,
+    faCoins,
+    faGear,
+    faUser,
+    faArrowRightFromBracket,
+} from '@fortawesome/free-solid-svg-icons';
+import {
+    faMessage,
+    faBell,
+    
+} from '@fortawesome/free-regular-svg-icons';
 import classNames from 'classnames/bind';
-import Tippy from '@tippyjs/react/headless';
+import HeadlessTippy from '@tippyjs/react/headless';
+import Tippy from '@tippyjs/react';
+import 'tippy.js/dist/tippy.css'
 
 import { Wrapper as PopperWrapper } from '~/Component/Popper';
 import styles from './Header.module.scss';
@@ -13,37 +33,86 @@ import Menu from '~/Component/Popper/Menu';
 
 const cx = classNames.bind(styles);
 
-const MENU_ITEMS=[
+const MENU_ITEMS = [
     {
-        icon:<FontAwesomeIcon icon={faEarthEurope}/>,
+        icon: <FontAwesomeIcon icon={faEarthEurope} />,
         title: 'Tiếng Việt',
-        
+        children: {
+            title: 'Ngôn ngữ',
+            data: [
+                {
+                    code: 'en',
+                    title: 'English',
+                },
+                {
+                    code: 'ind',
+                    title: 'Bahasa Indonesia',
+                },
+                {
+                    code: 'vi',
+                    title: 'Tiếng Việt',
+                },
+            ],
+        },
     },
     {
-        icon:<FontAwesomeIcon icon={faCircleQuestion}/>,
+        icon: <FontAwesomeIcon icon={faCircleQuestion} />,
         title: 'Phản hồi và trợ giúp',
-        to: '/feedback'
+        to: '/feedback',
     },
     {
-        icon:<FontAwesomeIcon icon={faKeyboard}/>,
+        icon: <FontAwesomeIcon icon={faKeyboard} />,
         title: 'Phím tắt trên bàn phím',
-    }
-]
+    },
+];
 
 function Header() {
+
+    const currentUser = true;
+
     const [searchResult, setSearchResult] = useState([]);
     useEffect(() => {
         setTimeout(() => {
             setSearchResult([]);
         }, 0);
     }, []);
+
+    const handleMenuChange = (menuItem) => {
+        console.log(menuItem);
+    };
+
+    const userMenu=[
+        {
+            icon: <FontAwesomeIcon icon={faUser} />,
+            title: 'Xem hồ sơ',
+            to:'/@anh2chetao'
+        },
+        {
+            icon: <FontAwesomeIcon icon={faCoins} />,
+            title: 'Nhận xu',
+            to:'/coin'
+        },
+        {
+            icon: <FontAwesomeIcon icon={faGear} />,
+            title: 'Cài đặt',
+            to:'/setting'
+        },
+        ...MENU_ITEMS,
+        {
+            icon: <FontAwesomeIcon icon={faArrowRightFromBracket} />,
+            title: 'Đăng suất',
+            to:'/logout',
+            separate: true,
+        },
+    ]
+
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
                 <div className={cx('logo')}>
                     <img src={image.logo} alt="tiktok"></img>
                 </div>
-                <Tippy
+                <HeadlessTippy
                     interactive
                     visible={searchResult.length > 0}
                     render={(attrs) => (
@@ -68,19 +137,34 @@ function Header() {
                             <FontAwesomeIcon icon={faMagnifyingGlass} />
                         </button>
                     </div>
-                </Tippy>
+                </HeadlessTippy>
+
                 <div className={cx('actions')}>
-                    <Button text leftIcon={<FontAwesomeIcon icon={faPlus}/>}>Tải lên</Button>
-                    <Button primary>Đăng nhập</Button>
+                    {currentUser ? (
+                        <>
+                            <Button text leftIcon={<FontAwesomeIcon icon={faPlus} />}>Tải lên</Button>
+                            <Tippy placement='bottom' duration={[0,0]} content='Tin nhắn'><button className={cx('actions-btn')}> <FontAwesomeIcon icon={faMessage}/></button></Tippy>
+                            <Tippy placement='bottom' duration={[0,0]} content='Hộp thư'><button className={cx('actions-btn')}> <FontAwesomeIcon icon={faBell}/></button></Tippy>
+                        </>
+                    ) : (
+                        <>
+                            <Button text leftIcon={<FontAwesomeIcon icon={faPlus} />}>Tải lên</Button>
+                            <Button primary>Đăng nhập</Button>
+                        </>
+                    )}
 
-                    {/* menu-list/menu-popper(wrapper)/menu-item(button-wrapper) */}
-                    <Menu items={MENU_ITEMS}> 
-                        <button className={cx('more-btn')}>
-                            <FontAwesomeIcon icon={faEllipsisVertical}/>
-                        </button>
+                    {/* menu-list/menu-popper(wrapper,Header)/menu-item(button-wrapper) */}
+                    <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
+                        {currentUser ? (
+                            <img className={cx('user-avatar')} alt="Nguyen Van A" src='https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-giso/8a97ef3da44f0b2c4962a2ca835220de~c5_100x100.jpeg?x-expires=1660017600&x-signature=LRIfVdc4G1qsb0Rb148XwrNpH5g%3D'/>
+                        ):(
+                            <button className={cx('more-btn')}>
+                                <FontAwesomeIcon icon={faEllipsisVertical} />
+                            </button>
+                        )}
                     </Menu>
-
                 </div>
+
             </div>
         </header>
     );
