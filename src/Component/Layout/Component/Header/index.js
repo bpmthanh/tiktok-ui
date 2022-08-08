@@ -14,11 +14,6 @@ import {
     faUser,
     faArrowRightFromBracket,
 } from '@fortawesome/free-solid-svg-icons';
-import {
-    faMessage,
-    faBell,
-    
-} from '@fortawesome/free-regular-svg-icons';
 import classNames from 'classnames/bind';
 import HeadlessTippy from '@tippyjs/react/headless';
 import Tippy from '@tippyjs/react';
@@ -30,6 +25,8 @@ import image from '~/assets/image';
 import AccountItem from '~/Component/AccountItem';
 import Button from '~/Component/Button';
 import Menu from '~/Component/Popper/Menu';
+import { MessageIcon, UploadIcon } from '~/Component/Icons';
+import Image from '~/Component/Image';
 
 const cx = classNames.bind(styles);
 
@@ -143,8 +140,8 @@ function Header() {
                     {currentUser ? (
                         <>
                             <Button text leftIcon={<FontAwesomeIcon icon={faPlus} />}>Tải lên</Button>
-                            <Tippy placement='bottom' duration={[0,0]} content='Tin nhắn'><button className={cx('actions-btn')}> <FontAwesomeIcon icon={faMessage}/></button></Tippy>
-                            <Tippy placement='bottom' duration={[0,0]} content='Hộp thư'><button className={cx('actions-btn')}> <FontAwesomeIcon icon={faBell}/></button></Tippy>
+                            <Tippy placement='bottom' duration={[0,0]} content='Tin nhắn'><button className={cx('actions-btn')}> <UploadIcon/></button></Tippy>
+                            <Tippy placement='bottom' duration={[0,0]} content='Hộp thư'><button className={cx('actions-btn')}><MessageIcon/></button></Tippy>
                         </>
                     ) : (
                         <>
@@ -156,7 +153,7 @@ function Header() {
                     {/* menu-list/menu-popper(wrapper,Header)/menu-item(button-wrapper) */}
                     <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
                         {currentUser ? (
-                            <img className={cx('user-avatar')} alt="Nguyen Van A" src='https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-giso/8a97ef3da44f0b2c4962a2ca835220de~c5_100x100.jpeg?x-expires=1660017600&x-signature=LRIfVdc4G1qsb0Rb148XwrNpH5g%3D'/>
+                            <Image className={cx('user-avatar')} alt="Nguyen Van A" fallBack='https://upload.wikimedia.org/wikipedia/commons/f/f2/2020_Ferrari_F8_Tributo_3.9.jpg' src='https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-giso/8a97ef3da44f0b2c4962a2ca835220de~c5_100x100.jpeg?x-expires=1660017600&x-signature=LRIfVdc4G1qsb0Rb148XwrNpH5g%3D'/>
                         ):(
                             <button className={cx('more-btn')}>
                                 <FontAwesomeIcon icon={faEllipsisVertical} />
