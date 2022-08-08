@@ -117,7 +117,8 @@ function Header() {
                     {/* menu-list/menu-popper(wrapper,Header)/menu-item(button-wrapper) */}
                     <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
                         {currentUser ? (
-                            <Image className={cx('user-avatar')} alt="Nguyen Van A" fallBack='https://upload.wikimedia.org/wikipedia/commons/f/f2/2020_Ferrari_F8_Tributo_3.9.jpg' src='https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-giso/8a97ef3da44f0b2c4962a2ca835220de~c5_100x100.jpeg?x-expires=1660017600&x-signature=LRIfVdc4G1qsb0Rb148XwrNpH5g%3D'/>
+                            // src sai thì sẽ hiện fallback, không có fallback thì sẽ hiện noImage
+                            <Image className={cx('user-avatar')} alt="Nguyen Van A" fallBack='https://cdn-icons-png.flaticon.com/512/1053/1053244.png?w=360' src='https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-giso/8a97ef3da44f0b2c4962a2ca835220de~c5_100x100.jpeg?x-expires=1660017600&x-signature=LRIfVdc4G1qsb0Rb148XwrNpH5g%3D'/>
                         ):(
                             <button className={cx('more-btn')}>
                                 <FontAwesomeIcon icon={faEllipsisVertical} />
