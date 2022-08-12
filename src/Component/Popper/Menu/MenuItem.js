@@ -9,7 +9,7 @@ function MenuItem({ data,onClick }) {
         separate: data.separate
     });
     return (
-        <Button className={classes} onClick={onClick}leftIcon={data.icon} to={data.to} onClick={onClick}>
+        <Button className={classes} onClick={onClick}leftIcon={data.icon} to={data.to}>
             {data.title}
         </Button>
     );

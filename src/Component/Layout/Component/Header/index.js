@@ -34,16 +34,12 @@ const MENU_ITEMS = [
             title: 'Ngôn ngữ',
             data: [
                 {
-                    code: 'en',
-                    title: 'English',
-                },
-                {
-                    code: 'ind',
-                    title: 'Bahasa Indonesia',
-                },
-                {
                     code: 'vi',
                     title: 'Tiếng Việt',
+                },
+                {
+                    code: 'en',
+                    title: 'English',
                 },
             ],
         },
