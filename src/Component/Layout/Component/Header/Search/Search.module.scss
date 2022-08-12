@@ -15,6 +15,7 @@
         background-color: transparent;
         height: 100%;
         caret-color: rgb(254, 44, 85);
+        font-family: var(--font-family);
     }
     input:not(:placeholder-shown)~.search-btn{
         color: rgba(22, 24, 35, 0.75);

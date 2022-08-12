@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner, faCircleXmark, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import HeadlessTippy from '@tippyjs/react/headless';
 
+import * as searchServices from '~/apiServices/searchServices';
 import { Wrapper as PopperWrapper } from '~/Component/Popper';
 import AccountItem from '~/Component/AccountItem';
 import { useDebounce } from '~/hooks';
@@ -24,16 +25,13 @@ function Search() {
             setSearchResult([]);
             return;
         }
-        setLoading(true);
-        fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(debounced)}&type=less`)
-            .then((res) => res.json())
-            .then((res) => {
-                setSearchResult(res.data);
-                setLoading(false);
-            })
-            .catch(() => {
-                setLoading(false);
-            });
+        const fetchApi=async()=>{
+            setLoading(true);
+            const result=await searchServices.search(debounced);
+            setSearchResult(result)
+            setLoading(false);
+        }
+        fetchApi(false)
     }, [debounced]);
 
     const handleClear = () => {
@@ -45,6 +43,13 @@ function Search() {
     const handleHideResult = () => {
         setShowResult(false);
     };
+
+    const handleChange=(e)=>{
+        const searchValue=e.target.value
+        if(!searchValue.startsWith(' ')){ // Khong co khoang trang
+            setSearchValue(searchValue)
+        } 
+    }
 
     return (
         <HeadlessTippy
@@ -68,7 +73,7 @@ function Search() {
                     value={searchValue}
                     placeholder="Tìm kiếm tài khoản và video"
                     spellCheck={true}
-                    onChange={(e) => setSearchValue(e.target.value)}
+                    onChange={handleChange}
                     onFocus={() => setShowResult(true)}
                 />
                 {!!searchValue && !loading && (
@@ -77,7 +82,7 @@ function Search() {
                     </button>
                 )}
                 {loading && <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />}
-                <button className={cx('search-btn')}>
+                <button className={cx('search-btn')} onMouseDown={e=>{e.preventDefault()}}>
                     <FontAwesomeIcon icon={faMagnifyingGlass} />
                 </button>
             </div>

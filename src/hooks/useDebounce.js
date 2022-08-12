@@ -7,7 +7,6 @@ function useDebounce(value, delay) {
         return ()=>clearTimeout(handler)
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [value]);
-    console.log(debounceValue)
     return debounceValue;
 }
 
