@@ -14,15 +14,16 @@ import classNames from 'classnames/bind';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types'
 
-import styles from './Header.module.scss';
+import styles from './header.module.scss';
 import image from '~/assets/image';
-import Button from '~/Component/Button';
-import Menu from '~/Component/Popper/Menu';
-import { MessageIcon, UploadIcon } from '~/Component/Icons';
-import Image from '~/Component/Image';
-import Search from './Search';
-import routesConfig from '~/config/routes';
+import Button from '~/component/button/button';
+import Menu from '~/component/popper/menu';
+import { MessageIcon, UploadIcon } from '~/component/icons';
+import Image from '~/component/image/image';
+import Search from './search';
+import config from '~/config';
 
 const cx = classNames.bind(styles);
 
@@ -90,7 +91,7 @@ function Header() {
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
-                <Link to={routesConfig.home} className={cx('logo')}>
+                <Link to={config.routes.home} className={cx('logo')}>
                     <img src={image.logo} alt="tiktok"></img>
                 </Link>
 
@@ -117,9 +118,7 @@ function Header() {
                         </>
                     ) : (
                         <>
-                            <Button text leftIcon={<FontAwesomeIcon icon={faPlus} />}>
-                                Tải lên
-                            </Button>
+                            <Button text leftIcon={<FontAwesomeIcon icon={faPlus}/>}>Tải lên</Button>
                             <Button primary>Đăng nhập</Button>
                         </>
                     )}

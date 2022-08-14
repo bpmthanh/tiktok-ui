@@ -1,11 +1,12 @@
 import Tippy from '@tippyjs/react/headless';
 import classNames from 'classnames/bind';
 import { useState } from 'react';
+import PropTypes from 'prop-types'
 
-import styles from './Menu.module.scss';
-import { Wrapper as PopperWrapper } from '~/Component/Popper';
-import MenuItem from './MenuItem'
-import Header from './Header';
+import styles from './menu.module.scss';
+import { Wrapper as PopperWrapper } from '~/component/popper';
+import MenuItem from './menuItem'
+import Header from './header';
 
 const cx = classNames.bind(styles);
 
@@ -40,7 +41,7 @@ function Menu({ children,items,onChange=defaultFn,hideOnClick=false,...passProps
             render={(attrs) => (
                 <div className={cx('menu-list')} tabIndex="-1" {...attrs}>
                     <PopperWrapper className={cx('menu-popper')}>
-                        {history.length >1 && <Header title='Ngôn ngữ' onBack={()=>{
+                        {history.length >1 && <Header title={current.title} onBack={()=>{
                             setHistory(prev=>prev.slice(0,prev.length-1))
                         }}/>}    
                         <div className={cx('menu-scrollable')}>{renderItems()}</div>
@@ -54,3 +55,10 @@ function Menu({ children,items,onChange=defaultFn,hideOnClick=false,...passProps
 }
 
 export default Menu;
+
+Menu.propTypes={
+    children:PropTypes.node.isRequired,
+    items:PropTypes.array,
+    onChange:PropTypes.func,
+    hideOnClick:PropTypes.bool
+}

@@ -1,13 +1,13 @@
 import { useState, useEffect, useRef } from 'react';
 import classNames from 'classnames/bind';
-import styles from './Search.module.scss';
+import styles from './search.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner, faCircleXmark, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import HeadlessTippy from '@tippyjs/react/headless';
 
-import * as searchServices from '~/apiServices/searchServices';
-import { Wrapper as PopperWrapper } from '~/Component/Popper';
-import AccountItem from '~/Component/AccountItem';
+import * as searchService from '~/service/searchServices';
+import { Wrapper as PopperWrapper } from '~/component/popper';
+import AccountItem from '~/component/accountItem';
 import { useDebounce } from '~/hooks';
 
 const cx = classNames.bind(styles);
@@ -27,7 +27,7 @@ function Search() {
         }
         const fetchApi=async()=>{
             setLoading(true);
-            const result=await searchServices.search(debounced);
+            const result=await searchService.search(debounced);
             setSearchResult(result)
             setLoading(false);
         }
