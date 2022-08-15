@@ -7,6 +7,7 @@ import Following from '~/pages/following'
 import Profile from '~/pages/profile'
 import Upload from '~/pages/upload'
 import Search from '~/pages/search'
+import Live from '~/pages/live'
 
 import config from '~/config'
 
@@ -17,6 +18,7 @@ const publicRoutes=[
     {path:config.routes.following,component:Following},
     // Xem xây dựng Logic phần Header #2 35:28
     {path:config.routes.profile,component:Profile},
+    {path:config.routes.live,component:Live},
     {path:config.routes.upload,component:Upload, layout:HeaderOnly},
     {path:config.routes.search,component:Search,layout:null},
 ]

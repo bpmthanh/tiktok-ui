@@ -1,2 +1,2 @@
-export {default} from './defaultLayout'
+export {default} from './component/defaultLayout/defaultLayout'
 export {default as HeaderOnly} from './headerOnly'
