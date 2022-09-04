@@ -1,0 +1,54 @@
+.wrapper{
+    padding: 16px 8px;
+    position: relative;
+    &::before{
+        content: "";
+    position: absolute;
+    left: 8px;
+    right: 8px;
+    top: 0;
+    height: 1px;
+    background: rgba(22, 24, 35, 0.12);
+    -webkit-transform: scaleY(0.5);
+    -moz-transform: scaleY(0.5);
+    -ms-transform: scaleY(0.5);
+    transform: scaleY(0.5);
+  }
+}
+.label{
+    color:rgba(22, 24, 35, 0.75);
+}
+.account-items{
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
+    &:hover{
+        cursor: pointer;
+        background: rgba(22, 24, 35, 0.03);
+    }
+}
+.avatar{
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    margin-right: calc(44px - 32px);
+}
+.item-info{}
+.nickname{
+    line-height: 22px;
+    font-size: 16px;
+}
+.name{
+    line-height: 15px;
+    font-size: 12px;
+    color:rgba(22, 24, 35, 0.75);
+}
+.see-all{
+    color: var(--primary);
+    list-style: 20px;
+    font-weight: 600;
+    font-size: 14px;
+    &:hover{
+        cursor: pointer;
+    }
+}

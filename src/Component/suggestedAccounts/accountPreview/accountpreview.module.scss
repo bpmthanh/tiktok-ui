@@ -1,0 +1,23 @@
+.wrapper{
+    padding: 20px;
+    width: 325px;
+}
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+.avatar{
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+}
+.social{
+    display: flex;
+    align-items: center;
+    margin-top: 8px;
+    .follower{
+        margin-right: 12px;
+    }
+}

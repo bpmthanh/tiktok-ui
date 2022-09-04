@@ -1,5 +1,5 @@
 import Header from '~/layout/component/header'
-import Sidebar from './sidebar'
+import Sidebar from '../sidebar'
 import styles from './defaultLayout.module.scss'
 import classNames from 'classnames/bind';
 import PropTypes from 'prop-types'
